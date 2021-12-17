@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+{% block title %}Portfolio{% endblock %}
+ 
+{% block content %}
+<!-- Boostrap class displays header text in a big box to attract the users attention-->
+<div class="jumbotron">
+  <!-- customises the portfolio name with the users username-->
+    <h2>{{user.username}}'s Portfolio|Track Your Crypto</h2>
+</div>
+{% endblock %}
