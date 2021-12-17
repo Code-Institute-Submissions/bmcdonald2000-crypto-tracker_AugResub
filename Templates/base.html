@@ -12,45 +12,54 @@
     </head>
     <body>
   <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-light">
-        <ul class="nav">
-         <!-- Navbar when the user is logged in -->
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-         <!-- personalised welcome message for the user -->
-        <a class="nav-link">Welcome, {{user.username}}</a>
-        </li>
-        <!-- Page links when logged in-->
-        <li class="nav-item">
-        <a class="nav-link active" href="/Templates/index.html">Home</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link active" href="/Templates/portfolio.html">Portfolio</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/Templates/logout.html">Logout</a>
-        </li>
-        {% else %}
-        <!-- Page links when logged out-->
-        <li class="nav-item">
+        <nav class="navbar navbar-dark bg-light">
+            <ul class="nav">
+            <!-- Navbar when the user is logged in -->
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+            <!-- personalised welcome message for the user -->
+            <a class="nav-link">Welcome, {{user.username}}</a>
+            </li>
+            <!-- Page links when logged in-->
+            <li class="nav-item">
             <a class="nav-link active" href="/Templates/index.html">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Templates/registration.html">Sign up</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Templates/login.html">Login</a>
-        </li>
-        {% endif %}
-        </ul>
-    </nav>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="/Templates/portfolio.html">Portfolio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/Templates/logout.html">Logout</a>
+            </li>
+            {% else %}
+            <!-- Page links when logged out-->
+            <li class="nav-item">
+                <a class="nav-link active" href="/Templates/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Templates/registration.html">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Templates/login.html">Login</a>
+            </li>
+            {% endif %}
+            </ul>
+        </nav>
         {% block content %}{% endblock %}
 
-    <!-- Links to  Bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- footer content -->
+        <!-- Links to  Bootstrap js -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- opens modal onclick-->
+        <script>
+            $(document).ready(function(){
+                $("#Btn").click(function(){
+                    $("#myModal").modal();
+                });
+            });
+        </script>
+     <!-- footer -->
     <footer>Copyright 2021 Brieanna McDonald</footer>
     </body>
 </html>
