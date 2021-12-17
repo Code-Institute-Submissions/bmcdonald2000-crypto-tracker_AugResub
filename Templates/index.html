@@ -29,6 +29,54 @@
                     <th scope="col">Circulating Supply</th>
                   </tr>
             </thead>
+            <tbody>
+
+                <!-- when the relevant data is avaible, the table is populated. -->
+                {% if coins %}
+                {% for data in coins %}
+                <!-- humanize makes the data user friendly-->
+                {% load humanize %}
+                <tr>
+                  <td class="align-middle">{{data.market_cap_rank}}</td>
+                  <td><img src="{{data.image}}" height="60px" alt="Cryptocurrency Logo"></td>
+                  <th class="align-middle">{{data.name}} ({{data.symbol}})</th>
+                  <!-- for crypto with a price less than 1 they are displayed to 6 decimal places (dp)-->
+                  {% if data.current_price < 1 %}
+                  <th class="align-middle">${{data.current_price|floatformat:6}}</th>
+                  {% else %}
+                  <!-- for crypto with a price more than 1 they are displayed to 2 dp so it is easy for the user to read -->
+                  <th class="align-middle">${{data.current_price|floatformat:2|intcomma}}</th>
+                  {% endif %}
+                  <!-- when there is a decrease in price the text is red making it easy for the user to recognise -->
+                  {% if data.price_change_percentage_1h_in_currency < 0 %}
+                  <th class="align-middle text-danger">{{data.price_change_percentage_1h_in_currency|floatformat:2}}%</th>
+                  {% else %}
+                  <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                  <th class="align-middle text-success">{{data.price_change_percentage_1h_in_currency|floatformat:2}}%</th>
+                  {% endif %}
+                  <!-- when there is a decrease in price the text is red making it easy for the user to recognise -->
+                  {% if data.price_change_percentage_24h < 0 %}
+                  <th class="align-middle text-danger">{{data.price_change_percentage_24h|floatformat:2}}%</th>
+                  {% else %}
+                  <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                  <th class="align-middle text-success">{{data.price_change_percentage_24h|floatformat:2}}%</th>
+                  {% endif %}
+                  <!-- when there is a decrease in price the text is red making it easy for the user to recognise -->
+                  {% if data.price_change_percentage_7d_in_currency < 0 %}
+                  <th class="align-middle text-danger">{{data.price_change_percentage_7d_in_currency|floatformat:2}}%</th>
+                  {% else %}
+                  <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                  <th class="align-middle text-success">{{data.price_change_percentage_7d_in_currency|floatformat:2}}%</th>
+                  {% endif %}
+                  <th class="align-middle">${{data.market_cap|floatformat:2|intcomma}}</th>
+                  <th class="align-middle">{{data.circulating_supply|floatformat:2|intcomma}} ({{data.symbol}})</th>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <!-- If there is an api issue the user will be informed -->
+                <p> Sorry, we seem to be having an issue collecting the requested data, please bare with us while we fix it.</p>
+                {% endif %}
+            </tbody>
       </table>
    </div>
 {% endblock %}
