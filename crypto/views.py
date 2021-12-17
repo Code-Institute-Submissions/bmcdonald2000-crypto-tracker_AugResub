@@ -19,6 +19,26 @@ def index(request):
  # returns relevant data to home page table from the api endpoint above
    return render(request, template_name="index.html", context={'coins':data})
 
+# view function for registration
+def registration(request):
+    # the sign up form sends a post request
+    if request.method == "POST":
+            form = signup(request.POST)
+             # if the form is valid, it's saved an user is notified
+            if form.is_valid():
+                user = form.save()
+                login(request, user)
+                messages.success(request, "Registration successful.")
+                return redirect("registration")
+            else:
+                 # if the form is invalid user is notfied and registration attempt is not saved
+                messages.error(request, "Registration unsuccessful. Please fill out the form correctly")
+    # the signup form from forms.py 
+    form = signup()
+     #  http respone is then retured to the browser
+    return render (request=request, template_name="registration.html", context={"form":form})
+
+
 
 
     
