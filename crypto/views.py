@@ -37,6 +37,28 @@ def registration(request):
     form = signup()
      #  http respone is then retured to the browser
     return render (request=request, template_name="registration.html", context={"form":form})
+#  view function for login, django authentication form is used
+def Userlogin(request):
+    if request.method == "POST":
+            form = AuthenticationForm(request, data=request.POST)
+            #  valid form clears form inputs
+            if form.is_valid():
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                user = authenticate(username=username, password=password)
+                #  user is notified once successfully logged in
+                if user is not None:
+                    login(request, user)
+                    messages.info(request, f"You are now logged in as {username}.")
+                    return redirect("userlogin")
+                else:
+                    #  if login is uncessful user is notified
+                    messages.error(request,"Incorrect username or password, please try again.")
+            else:
+                messages.error(request,"Invalid username or password,please try again.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="login.html", context={"login":form})
+#  view funtion for logging out
 
 
 
