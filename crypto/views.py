@@ -59,6 +59,14 @@ def Userlogin(request):
     form = AuthenticationForm()
     return render(request=request, template_name="login.html", context={"login":form})
 #  view funtion for logging out
+def log_out(request):
+    #  django logout is used and user notified once they log out sucessfully
+    logout(request)
+    messages.info(request, "You have successfully logged out.")  
+    #  user is then redirected to the login page
+    return redirect("userlogin")
+    return render(request=request, template_name='logout.html')
+
 
 
 
