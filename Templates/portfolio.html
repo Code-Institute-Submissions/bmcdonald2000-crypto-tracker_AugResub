@@ -12,6 +12,28 @@
       <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="portfolioModal" id="Btn">
           Add Crypto To Tracker
       </button>
+      <!-- django messages used to alert user-->
+      {% if messages %}
+           {% for message in messages %}
+                   <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+           {% endfor %}
+           {% endif %}
+      <!-- Bootstrap tabel to display users portfolio data-->
+      <table class= "table table-bordered table-hover table-striped table-dark table-responsive">
+        <thead>
+              <tr>
+                <th scope="col"> Cryptocurrency</th>
+                <th scope="col"> Value of tokens (USD)</th>
+                <th scope="col"> 1hr price change</th>
+                <th scope="col"> 24hr price change </th>
+                <th scope="col"> 7d price change</th>
+                <th scope="col"> 1yr price change</th>
+                <th scope="col"> 24hr Highs (USD) </th>
+                <th scope="col"> 24hr Lows (USD)</th>
+
+              </tr>
+        </thead>
+      </table>
         <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="portfolioModal" aria-hidden="true" id="Modal">
             <div class="modal-dialog" role="document">
