@@ -17,12 +17,11 @@ import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-CSRF_TRUSTED_ORIGINS = ['https://salty-reef-05763.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://8000-harlequin-dingo-778z1y9e.ws-eu23.gitpod.io']
 
 # installed applications
 
