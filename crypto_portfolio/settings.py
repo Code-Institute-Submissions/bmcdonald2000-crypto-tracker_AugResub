@@ -22,7 +22,7 @@ DEBUG = False
 ALLOWED_HOSTS = []
 
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-harlequin-dingo-778z1y9e.ws-eu23.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://salty-reef-05763.herokuapp.com/']
 
 # installed applications
 
