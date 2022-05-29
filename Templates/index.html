@@ -5,78 +5,47 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<!-- Bootstrap class-->
-   <div class="container">
-<!-- sets padding and centers text-->
-    <div class="p-5 text-center">
-    
-<!-- Home page header-->
-      <h2>Top 100 Cryptocurrency Prices by Market Cap </h2>
+<br><br><br>
+<div class="container">
+    <div class="card">
+        <div class="card text-center">
+            <h3 class="card-header">
+                Welcome To Crypto Tracker
+            </h3>
+            <br><br>
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-sm-6">
+                        <div class="card" id="mini">
+                            <p class="">
+                                Free Crypto Portfolio Tracker
+                            </p>
+                        </div>
+                        <br><br>
+                        <div class="card" id="mini">
+                            <p class="">
+                                Top 100 crypto with live updates 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                            <div class="card" id="mini">
+                                <p class="">
+                                    Access to loads of coins
+                                </p>
+                            </div>
+                            <br><br>
+                            <div class="card" id="mini">
+                                <p class="">
+                                    Easy to use, so you don't have to be a professional.
+                                </p>
+                            </div>
+                            <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer"><a href="/Templates/login.html">Login </a>to check your portfolio or <a href="/Templates/registration.html">Sign up</a></div>
+        </div>
     </div>
-
-<!-- Bootstrap table to display coin data-->
-      <table class= "table table-hover table-striped table-dark table-bordered table-responsive">
-            <thead>
-                  <tr>
-                    <th scope="col"># Rank</th>
-                    <th scope="col">Logo</th>
-                    <th scope="col">Name (Symbol)</th>
-                    <th scope="col">Price (USD)</th>
-                    <th scope="col">1hr price change </th>
-                    <th scope="col">24hr price change</th>
-                    <th scope="col">7d price change</th>
-                    <th scope="col">Market Cap (USD)</th>
-                    <th scope="col">Circulating Supply</th>
-                  </tr>
-            </thead>
-            <tbody>
-
-                <!-- when the relevant data is avaible, the table is populated. -->
-                {% if coins %}
-                {% for data in coins %}
-                <!-- humanize makes the data user friendly-->
-                {% load humanize %}
-                <tr>
-                  <td class="align-middle">{{data.market_cap_rank}}</td>
-                  <td><img src="{{data.image}}" height="60px" alt="Cryptocurrency Logo"></td>
-                  <th class="align-middle">{{data.name}} ({{data.symbol}})</th>
-                  <!-- for crypto with a price less than 1 they are displayed to 6 decimal places (dp)-->
-                  {% if data.current_price < 1 %}
-                  <th class="align-middle">${{data.current_price|floatformat:6}}</th>
-                  {% else %}
-                  <!-- for crypto with a price more than 1 they are displayed to 2 dp so it is easy for the user to read -->
-                  <th class="align-middle">${{data.current_price|floatformat:2|intcomma}}</th>
-                  {% endif %}
-                  <!-- when there is a decrease in price the text is red making it easy for the user to recognise -->
-                  {% if data.price_change_percentage_1h_in_currency < 0 %}
-                  <th class="align-middle text-danger">{{data.price_change_percentage_1h_in_currency|floatformat:2}}%</th>
-                  {% else %}
-                  <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                  <th class="align-middle text-success">{{data.price_change_percentage_1h_in_currency|floatformat:2}}%</th>
-                  {% endif %}
-                  <!-- when there is a decrease in price the text is red making it easy for the user to recognise -->
-                  {% if data.price_change_percentage_24h < 0 %}
-                  <th class="align-middle text-danger">{{data.price_change_percentage_24h|floatformat:2}}%</th>
-                  {% else %}
-                  <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                  <th class="align-middle text-success">{{data.price_change_percentage_24h|floatformat:2}}%</th>
-                  {% endif %}
-                  <!-- when there is a decrease in price the text is red making it easy for the user to recognise -->
-                  {% if data.price_change_percentage_7d_in_currency < 0 %}
-                  <th class="align-middle text-danger">{{data.price_change_percentage_7d_in_currency|floatformat:2}}%</th>
-                  {% else %}
-                  <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                  <th class="align-middle text-success">{{data.price_change_percentage_7d_in_currency|floatformat:2}}%</th>
-                  {% endif %}
-                  <th class="align-middle">${{data.market_cap|floatformat:2|intcomma}}</th>
-                  <th class="align-middle">{{data.circulating_supply|floatformat:2|intcomma}} ({{data.symbol}})</th>
-                </tr>
-                {% endfor %}
-                {% else %}
-                <!-- If there is an api issue the user will be informed -->
-                <p> Sorry, we seem to be having an issue collecting the requested data, please bare with us while we fix it.</p>
-                {% endif %}
-            </tbody>
-      </table>
-   </div>
+</div>
 {% endblock %}
