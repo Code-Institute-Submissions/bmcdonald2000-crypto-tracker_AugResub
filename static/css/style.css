@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+.body{
+    font-family: 'Space Mono', monospace;
+}
+.fixed-bottom{
+    color: #ffffff;
+    text-align: center;
+    background-color: #012389;
+    padding: 20px;
+}
+
+.btn{
+    color: #000000;
+    background-color: #ECC76A;
+}
+/* FFFFD2 - butter colour */
+.navbar-dark{
+    color: #ffffff;
+    text-align: center;
+    background-color: #012389;
+}
+.nav-link{
+    color: #ffffff;
+}
+.card-header{
+    background-color: #012389 ;
+    color:#ffffff;
+}
+.card-footer{
+    background-color: #012389;
+    color: #ffffff;
+}
+.card{
+    border-color:#000000;
+    border-width: 1px;
+}
+
+#mini{
+    text-align: center;
+    border-radius: 15px;
+    border-width: 2px;
+    background-color: #ECC76A;
+    padding: 20px;
+}
