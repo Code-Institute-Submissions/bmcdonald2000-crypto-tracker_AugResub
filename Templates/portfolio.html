@@ -2,36 +2,40 @@
 {% block title %}Portfolio{% endblock %}
  
 {% block content %}
-<!-- Boostrap class displays header text in a big box to attract the users attention-->
-<div class="jumbotron">
-  <!-- customises the portfolio name with the users username-->
-    <h2>{{user.username}}'s Portfolio|Track Your Crypto</h2>
-</div>
-<div class="container" >
-      <!-- Button to trigger Modal -->
-      <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="portfolioModal" id="Btn">
-          Add Crypto To Tracker
-      </button>
-      <!-- django messages used to alert user-->
-      {% if messages %}
-           {% for message in messages %}
-                   <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-           {% endfor %}
-      {% endif %}
-      <!-- Bootstrap tabel to display users portfolio data-->
-      <table class= "table table-bordered table-hover table-striped table-dark table-responsive">
-        <thead>
-              <tr>
-                <th scope="col"> Cryptocurrency</th>
-                <th scope="col"> Value of tokens (USD)</th>
-                <th scope="col"> 1hr price change</th>
-                <th scope="col"> 24hr price change </th>
-                <th scope="col"> 7d price change</th>
-                <th scope="col"> 1yr price change</th>
-                <th scope="col"> 24hr Highs (USD) </th>
-                <th scope="col"> 24hr Lows (USD)</th>
-              </tr>
-        </thead>
+<br><br>
+<div class="container">
+        <!-- customises the portfolio name with the users username-->
+        <h2>{{user.username|title}}'s Portfolio|Track Your Crypto</h2>
+        <hr>
+        <br><br>
+
+        <!-- Button to trigger Modal -->
+        <button type="button" class="btn" data-toggle="modal" data-target="portfolioModal" id="Btn">
+            Add Crypto To Tracker
+        </button>
+        <br><br>
+
+        <!-- django messages used to alert user-->
+        {% if messages %}
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <!-- Bootstrap table to display users portfolio data-->
+        <table class= "table table-bordered table-hover table-striped table-dark table-responsive">
+          <thead>
+                <tr>
+                  <th scope="col"> Cryptocurrency</th>
+                  <th scope="col"> Value of tokens (USD)</th>
+                  <th scope="col"> 1hr price change</th>
+                  <th scope="col"> 24hr price change </th>
+                  <th scope="col"> 7d price change</th>
+                  <th scope="col"> 1yr price change</th>
+                  <th scope="col"> 24hr Highs (USD) </th>
+                  <th scope="col"> 24hr Lows (USD)</th>
+                </tr>
+          </thead>
+      </div>
         <tbody>
           <!-- when the relevant data is avaible the portfolio table is populated-->
             {% if datalist %}
@@ -39,7 +43,7 @@
                   <!-- humanize makes the data user friendly-->
                   {% load humanize %}
                   <tr>
-                  <th class="align-middle">{{name}}</th>
+                  <th class="align-middle">{{name|title}}</th>
                   <!-- for crypto with a price less than 1 they are displayed to 6 decimal places-->
                   {% if value < 1 %}
                     <th class="align-middle">$ {{value|floatformat:6}}</th>
@@ -95,7 +99,7 @@
       </table>
         <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="portfolioModal" aria-hidden="true" id="Modal">
-            <div class="modal-dialog" role="document">
+          <div class="modal-dialog" role="document">
                 <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-header">
@@ -110,11 +114,11 @@
                         {% csrf_token %}
                         <div class="form-group">
                           <label for="coin-name">Currency Name:</label>
-                          <input type="text" class="form-control" name="coin_name" required id="coin_name" placeholder="Eg. bitcoin"></input>
+                          <select class="form-control" name="coin_name" required id="coin_name"></select>
                         </div>
                         <div class="form-group">
                           <label for="coin-symbol">Symbol:</label>
-                          <input type="text" class="form-control" name="coin_symbol" required id="coin_symbol" placeholder="Eg. Bitcoin is BTC"></input>
+                          <select  type="text" class="form-control" name="coin_symbol" required id="coin_symbol"></select>
                         </div>
                         <div class="form-group">
                             <label for="number_tokens">Number of Tokens:</label>
@@ -126,8 +130,8 @@
                         </button>
                     </form>
                  </div>
-            </div>
-        </div>
-    </div>
+              </div>
+          </div>
+      </div>
 </div>
 {% endblock %}
