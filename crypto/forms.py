@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-# creates signup form for the sign up page, ensures details are saved and the form is cleared if all the inputs are valid
+# creates signup form, ensures details are saved and the form is cleared if all the inputs are valid
 
 class Signup(UserCreationForm):
     email = forms.EmailField(required=True)
