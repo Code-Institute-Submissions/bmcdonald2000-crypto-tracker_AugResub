@@ -6,23 +6,33 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
- <!-- sets container padding-->
-   <div class="container py-5">
-       <h2>Login</h2>
-        <!-- form data is posted to the database -->
-       <form action="" method="POST">
-            <!-- CSRF token prevents CSRF attacks -->
-           {% csrf_token %}
-            <!-- message data is displayed to the user using django messages-->
-           {% if messages %}
-           {% for message in messages %}
-                   <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-           {% endfor %}
-           {% endif %}
-           {{login|crispy}}
-            <!-- button to sumbit form data -->
-           <button type="submit" class="btn btn-primary">Submit</button>
-       </form>
-   </div>
 
+<br><br><br>
+<div class="container w-75">
+    <div class="card">
+            <h3 class="card-header">
+                Login
+            </h3>
+            <br>
+            <div class="container">
+                <!-- form data is posted to the database -->
+                <form action="" method="POST">
+                    <!-- CSRF token prevents CSRF attacks -->
+                {% csrf_token %}
+                    <!-- message data is displayed to the user using django messages-->
+                {% if messages %}
+                    {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                {{login|crispy}}
+                    <!-- button to sumbit form data -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <br><br>
+                <div class="card-footer">If you don't have an account, <a href="/Templates/registration.html">Sign up</a></div>
+    </div>
+</div>
+    
 {% endblock %}
