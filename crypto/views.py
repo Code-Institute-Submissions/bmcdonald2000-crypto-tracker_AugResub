@@ -12,12 +12,16 @@ from crypto.models import PortfolioTracker
 
 
 # view function for home page
-def index(request):
+def top100(request):
     api = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C%2024h%2C7d'
     data = requests.get(api).json()
 
     # returns relevant data to home page table from the api endpoint above
-    return render(request, template_name="index.html", context={'coins':data})
+    return render(request, template_name="top100.html", context={'coins':data})
+
+# view function for home page
+def index(request):
+    return render(request, template_name="index.html")
 
 # view function for registration
 def registration(request):
@@ -99,7 +103,6 @@ def view_portfolio(request):
             url = f'https://api.coingecko.com/api/v3/coins/{objs.crypto}'
             data = requests.get(url).json()
 
-
             float_currency_amount = float(objs.tokens)
             price = data['market_data']['current_price']['usd']
             day= data['market_data']['price_change_percentage_24h_in_currency']['usd']
@@ -108,6 +111,7 @@ def view_portfolio(request):
             year= data['market_data']['price_change_percentage_1y_in_currency']['usd']
             highs=data['market_data']['high_24h']['usd']
             lows=data['market_data']['low_24h']['usd']
+            
             # users token(s) value is calculated in usd
             total_value = float_currency_amount * price
             # appends the collected data to the relvant list
