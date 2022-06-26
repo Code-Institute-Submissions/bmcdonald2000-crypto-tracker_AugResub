@@ -2,136 +2,160 @@
 {% block title %}Portfolio{% endblock %}
  
 {% block content %}
-<br><br>
-<div class="container">
-        <!-- customises the portfolio name with the users username-->
-        <h2>{{user.username|title}}'s Portfolio|Track Your Crypto</h2>
-        <hr>
-        <br><br>
 
-        <!-- Button to trigger Modal -->
-        <button type="button" class="btn" data-toggle="modal" data-target="portfolioModal" id="Btn">
-            Add Crypto To Tracker
-        </button>
-        <br><br>
-
-        <!-- django messages used to alert user-->
-        {% if messages %}
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        <!-- Bootstrap table to display users portfolio data-->
-        <table class= "table table-bordered table-hover table-striped table-dark table-responsive">
-          <thead>
-                <tr>
-                  <th scope="col"> Cryptocurrency</th>
-                  <th scope="col"> Value of tokens (USD)</th>
-                  <th scope="col"> 1hr price change</th>
-                  <th scope="col"> 24hr price change </th>
-                  <th scope="col"> 7d price change</th>
-                  <th scope="col"> 1yr price change</th>
-                  <th scope="col"> 24hr Highs (USD) </th>
-                  <th scope="col"> 24hr Lows (USD)</th>
-                </tr>
-          </thead>
-      </div>
-        <tbody>
-          <!-- when the relevant data is avaible the portfolio table is populated-->
-            {% if datalist %}
-                {% for name, value, day, week, hour, year, highs, lows in datalist %}
-                  <!-- humanize makes the data user friendly-->
-                  {% load humanize %}
-                  <tr>
-                  <th class="align-middle">{{name|title}}</th>
-                  <!-- for crypto with a price less than 1 they are displayed to 6 decimal places-->
-                  {% if value < 1 %}
-                    <th class="align-middle">$ {{value|floatformat:6}}</th>
-                  {% else %}
-                    <!-- for crypto with a price more than 1 they are displayed to 2 decimal places-->
-                    <th class="align-middle">$ {{value|floatformat:2|intcomma}}</th>
-                  {% endif %}
-                  {% if hour < 0 %}
-                    <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
-                    <th class="align-middle text-danger">{{hour|floatformat:2|intcomma}}%</th>
-                  {% else %}
-                    <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                    <th class="align-middle text-success">{{hour|floatformat:2|intcomma}}%</th>
-                  {% endif %}
-                  {% if day < 0 %}
-                    <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
-                    <th class="align-middle text-danger">{{day|floatformat:2|intcomma}}%</th>
-                  {% else %}
-                    <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                    <th class="align-middle text-success">{{day|floatformat:2|intcomma}}%</th>
-                  {% endif %}
-                  {% if week < 0 %}
-                    <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
-                    <th class="align-middle text-danger">{{week|floatformat:2|intcomma}}%</th>
-                  {% else %}
-                    <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                    <th class="align-middle text-success">{{week|floatformat:2|intcomma}}%</th>
-                  {% endif %}
-                  {% if year < 0 %}
-                    <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
-                    <th class="align-middle text-danger">{{year|floatformat:2|intcomma}}%</th>
-                  {% else %}
-                    <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
-                    <th class="align-middle text-success">{{year|floatformat:2|intcomma}}%</th>
-                  {% endif %}
-                  {% if highs < 1 %}
-                    <th class="align-middle">$ {{highs|floatformat:6}}</th>
-                  {% else %}
-                    <th class="align-middle">$ {{highs|floatformat:2|intcomma}}</th>
-                  {% endif %}
-                  {% if lows < 1 %}
-                    <th class="align-middle">$ {{lows|floatformat:6}}</th>
-                  {% else %}
-                    <th class="align-middle">$ {{lows|floatformat:2|intcomma}}</th>
-                  {% endif %}
+  {% if user.is_authenticated %}
+  
+    <br><br>
+    <div class="container">
+            <!-- customises the portfolio name with the users username-->
+            <h2>{{user.username|title}}'s Portfolio|Track Your Crypto</h2>
+            <hr>
+            <!-- line break -->
+            <br>
+            <!-- Button to trigger Modal -->
+            <button type="button" class="btn" data-toggle="modal" data-target="portfolioModal" id="Btn">
+                Add Crypto To Tracker
+            </button>
+            <!-- line break -->
+            <br>
+            <br>
+            <!-- django messages used to alert user-->
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} ">{{ message }}</div>
                 {% endfor %}
-                </tr>
-                <!-- When no data can be displayed-->
-            {%else%}
-              <p> You have not added any crypto yet</p>
-            {%endif%}
-        </tbody>
-      </table>
-        <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="portfolioModal" aria-hidden="true" id="Modal">
-          <div class="modal-dialog" role="document">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="portfolioModal">Add Crypto</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+            {% endif %}
+            <!-- Bootstrap table to display users portfolio data-->
+            <table class= "table table-bordered table-hover table-striped table-dark table-responsive">
+              <thead>
+                    <tr>
+                      <th scope="col"> Cryptocurrency</th>
+                      <th scope="col"> Value of tokens (USD)</th>
+                      <th scope="col"> 1hr price change</th>
+                      <th scope="col"> 24hr price change </th>
+                      <th scope="col"> 7d price change</th>
+                      <th scope="col"> 1yr price change</th>
+                      <th scope="col"> 24hr Highs (USD) </th>
+                      <th scope="col"> 24hr Lows (USD)</th>
+                    </tr>
+              </thead>
+          </div>
+            <tbody>
+              <!-- when the relevant data is avaible the portfolio table is populated-->
+                {% if datalist %}
+                    {% for name, value, day, week, hour, year, highs, lows in datalist %}
+                      <!-- humanize makes the data user friendly-->
+                      {% load humanize %}
+                      <tr>
+                        <th class="align-middle">{{name|title}}</th>
+                        <!-- for crypto with a price less than 1 they are displayed to 6 decimal places-->
+                      {% if value < 1 %}
+                        <th class="align-middle">$ {{value|floatformat:6}}</th>
+                      {% else %}
+                        <!-- for crypto with a price more than 1 they are displayed to 2 decimal places-->
+                        <th class="align-middle">$ {{value|floatformat:2|intcomma}}</th>
+                      {% endif %}
+                      {% if hour < 0 %}
+                        <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
+                        <th class="align-middle text-danger">{{hour|floatformat:2|intcomma}}%</th>
+                      {% else %}
+                        <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                        <th class="align-middle text-success">{{hour|floatformat:2|intcomma}}%</th>
+                      {% endif %}
+                      {% if day < 0 %}
+                        <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
+                        <th class="align-middle text-danger">{{day|floatformat:2|intcomma}}%</th>
+                      {% else %}
+                        <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                        <th class="align-middle text-success">{{day|floatformat:2|intcomma}}%</th>
+                      {% endif %}
+                      {% if week < 0 %}
+                        <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
+                        <th class="align-middle text-danger">{{week|floatformat:2|intcomma}}%</th>
+                      {% else %}
+                        <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                        <th class="align-middle text-success">{{week|floatformat:2|intcomma}}%</th>
+                      {% endif %}
+                      {% if year < 0 %}
+                        <!-- when there is a decrease in price the text is red making it easy for the user to recognise --></0>
+                        <th class="align-middle text-danger">{{year|floatformat:2|intcomma}}%</th>
+                      {% else %}
+                        <!-- when there is an increase in price the text is green making it easy for the user to recognise -->
+                        <th class="align-middle text-success">{{year|floatformat:2|intcomma}}%</th>
+                      {% endif %}
+                      {% if highs < 1 %}
+                        <th class="align-middle">$ {{highs|floatformat:6}}</th>
+                      {% else %}
+                        <th class="align-middle">$ {{highs|floatformat:2|intcomma}}</th>
+                      {% endif %}
+                      {% if lows < 1 %}
+                        <th class="align-middle">$ {{lows|floatformat:6}}</th>
+                      {% else %}
+                        <th class="align-middle">$ {{lows|floatformat:2|intcomma}}</th>
+                      {% endif %}
+                    {% endfor %}
+                    </tr>
+                    <!-- When no data can be displayed-->
+                {%else%}
+                  <p> You have not added any crypto yet</p>
+                {%endif%}
+            </tbody>
+          </table>
+          <!-- line break -->
+          <br><br><br><br><br><br>
+            <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="portfolioModal" aria-hidden="true" id="Modal">
+              <div class="modal-dialog" role="document">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="portfolioModal">Add Crypto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                      </div>
+                      <!-- Modal body contains the form where the user inputs there crypto data-->
+                      <div class="modal-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <label for="coin-name">Currency Name:</label>
+                              <select class="form-control" name="coin_name" required id="coin_name"></select>
+                            </div>
+                            <div class="form-group">
+                              <label for="coin-symbol">Symbol:</label>
+                              <select  type="text" class="form-control" name="coin_symbol" required id="coin_symbol"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="number_tokens">Number of Tokens:</label>
+                                <input type="text" class="form-control" name="number_tokens" required id="number_tokens" placeholder="Enter a number"></input>
+                            </div>
+                            <!-- saves user inputs to django sqlite3-->
+                            <button type="submit" class="btn btn-success">
+                              save
+                            </button>
+                        </form>
+                    </div>
                   </div>
-                  <!-- Modal body contains the form where the user inputs there crypto data-->
-                  <div class="modal-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="form-group">
-                          <label for="coin-name">Currency Name:</label>
-                          <select class="form-control" name="coin_name" required id="coin_name"></select>
-                        </div>
-                        <div class="form-group">
-                          <label for="coin-symbol">Symbol:</label>
-                          <select  type="text" class="form-control" name="coin_symbol" required id="coin_symbol"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="number_tokens">Number of Tokens:</label>
-                            <input type="text" class="form-control" name="number_tokens" required id="number_tokens" placeholder="Enter a number"></input>
-                        </div>
-                        <!-- saves user inputs to django sqlite3-->
-                        <button type="submit" class="btn btn-success">
-                          save
-                        </button>
-                    </form>
-                 </div>
               </div>
           </div>
+    </div>
+  {% else %}
+      <!-- line break -->
+      <br><br>
+      <!-- User is told why they cant access the portfolio page -->
+      <h2 id="heading"> You must <a href="{% url 'userlogin' %}">login</a> to access your portfolio</h2>
+
+      <!-- div makes it easier to style icon -->
+      <div class="stop">
+          <!-- boostrap stop icon -->
+          <i class="bi bi-slash-circle-fill"></i>
       </div>
-</div>
+      <!-- line break -->
+      <br><br>
+      <!-- Sign up link-->
+      <p id="heading"> <strong>If you don't have an account <a href="{% url 'registration' %}">sign up</a></strong></p>
+      <!-- line break -->
+      <br><br>
+  {% endif %}
 {% endblock %}
