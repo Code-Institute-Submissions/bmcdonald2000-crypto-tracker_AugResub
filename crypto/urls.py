@@ -6,12 +6,11 @@ from crypto.views import log_out, top100
 
 # sets out the path for the relevant templates
 urlpatterns = [
-   path('', index, name='index'),
+   path('', index, name='home'),
    path('admin/', admin.site.urls),
-   path('Templates/registration.html', registration, name='registration'),
-   path('Templates/login.html', Userlogin, name='userlogin'),
-   path('Templates/index.html', index, name='home'),
-   path('Templates/logout.html', log_out, name='logout'),
-   path('Templates/portfolio.html', view_portfolio, name='portfolio'),
-   path('Templates/top100.html', top100, name='top100'),
+   path('Registration', registration, name='registration'),
+   path('Login', Userlogin, name='userlogin'),
+   path('Logout', log_out, name='logout'),
+   path('Portfolio', view_portfolio, name='portfolio'),
+   path('Top 100', top100, name='top100'),
 ]
