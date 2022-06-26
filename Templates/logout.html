@@ -1,10 +1,10 @@
 <!-- extends the parent template (base html)-->
 {% extends 'base.html'%}
 <!-- sets page title to Logout-->
-{% block title %}Logout% endblock %}
+{% block title %}Logout {% endblock %}
 <!-- django messages is used to alert the user-->
 {% if messages %}
-{% for message in messages %}
-  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-{% endfor %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
 {% endif %}
