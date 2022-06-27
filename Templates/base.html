@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
           <!-- loads the static files -->
           {% load static %}
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="{{'/static/css/style.css' }}">
     <!-- Link to css -->
-    <link link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
     <!-- Link to jquery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -31,7 +32,7 @@
   <!-- Navbar -->
         <nav class="navbar navbar-dark">
                 <!-- logo -->
-                <img class="navbar-brand" src="{{ '/static/images/logo.png' }}" alt="logo" width="100" height="70" class="d-inline-block">
+                <img class="navbar-brand" src="{{ '/static/images/logo.png' }}" alt="logo" width="100" height="70">
 
                 <!-- home link with icon -->
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -73,7 +74,6 @@
                     Login
                 </a>
                 {% endif %}
-            </ul>
         </nav>
         {% block content %}{% endblock %}
         
