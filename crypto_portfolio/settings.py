@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 import django_heroku
 
@@ -21,8 +22,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SECRET_KEY = config('SECRET_KEY')
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-harlequin-dingo-778z1y9e.ws-eu46.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-harlequin-dingo-778z1y9e.ws-eu47.gitpod.io', 'https://salty-reef-05763.herokuapp.com/']
 
 # installed applications
 
@@ -53,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    
 ]
 
 ROOT_URLCONF = 'crypto_portfolio.urls'
