@@ -38,7 +38,7 @@
                 {% load humanize %}
                 <tr>
                   <td class="align-middle">{{data.market_cap_rank}}</td>
-                  <td><img src="{{data.image}}" height="60px" alt="Cryptocurrency Logo"></td>
+                  <td><img src="{{data.image}}" height="60" alt="Cryptocurrency Logo"></td>
                   <th class="align-middle">{{data.name}} ({{data.symbol}})</th>
                   <!-- for crypto with a price less than 1 they are displayed to 6 decimal places (dp)-->
                   {% if data.current_price < 1 %}
