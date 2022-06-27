@@ -78,8 +78,8 @@ a:visited{
     color: #ECC76A;
 }
 
-/* all text with id 'heading' is centred */
-#heading{
+/* all text with  class 'heading' is centred */
+.heading{
     text-align: center;
 }
 
