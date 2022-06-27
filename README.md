@@ -389,18 +389,13 @@ Initially I did recieve some intial errors and a warning. These are shown in the
 
   Initially I had quite a few errors relating to line spacing and line length. These have since been corrected and there are no errors in my workspace. All python code is PEP8 compliant. I have tested the code in all of the files listed below :point_down: using a [PEP8](http://pep8online.com/) validator and I used the [pydocstyle](https://code.visualstudio.com/docs/python/linting#_pydocstyle) linter extension in vscode.
 
-  The settings.py file returned two errors due to Django rules allowing longer line lengths (88 characters) than PEP8 (79 charcaters. 
-
-  This is shown in the screenshot below :point_down:
-
-  <img src="media/settings.png" alt="line too long" width="550px" height="350px">
-
-  The Django-Heroku package I have used in my project is also causes an error as it must be importaed at the end of the file, this goes against PEP8 rules but have passed validation using a DJango lynter. 
+  The Django-Heroku package I have used in my project causes an error as it must be importaed at the end of the file, this goes against PEP8 rules but has passed validation using a DJango lynter. 
 
   This is shown in the screenshots below :point_down:
-  <img src="media//images/settings2.png" alt="import not at top level" width="550px" height="350px">
 
-  <img src="media//Django-heroku.png" alt="django-heroku documentation" width="550px" height="350px">
+  <img src="media/settings.png" alt="import not at top level" width="550px" height="250px">
+
+  <img src="media/Django-heroku.png" alt="django-heroku documentation" width="550px" height="350px">
 
   ° crypto_portfolio:
   
