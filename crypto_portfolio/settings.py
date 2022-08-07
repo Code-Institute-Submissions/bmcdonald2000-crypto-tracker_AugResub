@@ -19,7 +19,6 @@ import django_heroku
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
-
 ALLOWED_HOSTS = ['']
 
 SECRET_KEY = config('SECRET_KEY')
@@ -34,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+   #'django.contrib.staticfiles',
     'django.contrib.humanize',
     'crispy_forms',
     'crypto',
@@ -51,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
