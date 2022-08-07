@@ -1,0 +1,96 @@
+/* google font space mono */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+/* body */
+.body{
+    font-family: 'Space Mono', monospace;
+}
+
+/* boostrap footer*/
+.fixed-bottom{
+    color: #ffffff;
+    text-align: center;
+    background-color: #012389;
+    padding: 20px;
+}
+/* buttons */
+.btn{
+    color: #000000;
+    background-color: #ECC76A;
+}
+/* boostrap navbar */
+.navbar-dark{
+    color: #ffffff;
+    text-align: center;
+    background-color: #012389;
+}
+
+/* boostrap nav link */
+.nav-link{
+    color: #ECC76A;
+}
+
+/* card header */
+.card-header{
+    background-color: #012389 ;
+    color:#ECC76A;
+}
+
+/* card footer */
+.card-footer{
+    background-color: #012389;
+    color: #ECC76A;
+}
+
+/*cards */
+.card{
+    border-color:#000000;
+    border-width: 1px;
+}
+
+/* mini card bubbles */
+.mini{
+    text-align: center;
+    border-radius: 15px;
+    border-width: 2px;
+    background-color: #ECC76A;
+    padding: 20px;
+}
+
+/* unvisted link is a light blue */
+a:link{
+    color: #A3CEFF;
+}
+
+/* link on hover is white*/
+a:hover{
+    color: #ffffff;
+}
+
+/* visited link is black*/
+a:visited{
+    color: #C9C9C9;
+}
+
+/* all footer icons are yellow and 30px */
+.icons{
+    font-size: 30px;
+    color: #ECC76A;
+}
+
+/* all text with  class 'heading' is centred */
+.heading{
+    text-align: center;
+}
+
+/* styles the stop message that appears when a user is trying to gain acess to a page they're unauthorised to access */
+.stop{
+    /* font is 250 px so it is always clear*/
+    font-size: 250px;
+    
+    /* stop icon is red so they know to stop */
+    color: #ff0000;
+    
+    /* text is centerised so it's easier for user to read */
+    text-align: center;
+}
